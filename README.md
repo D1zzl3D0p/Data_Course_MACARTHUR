@@ -1,2 +1,2 @@
-# Data_Course_MACARTHURThis README file contains information about my uploaded assignments
+# Data_Course_MACARTHUR
 This README file contains information about my uploaded assignments
