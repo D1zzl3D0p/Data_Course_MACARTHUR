@@ -1,5 +1,7 @@
 ---
 output: 
+  prettydoc::html_pretty:
+    theme: architect
 html_document:
   number_sections=TRUE
 pagetitle: Assignment_2
