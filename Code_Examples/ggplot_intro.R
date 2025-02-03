@@ -25,6 +25,7 @@ data("midwest", package = "ggplot2")
 
 # Let’s initialize a basic ggplot based on the midwest dataset that we loaded.
 ggplot(midwest) # what do you see?
+p_tmp <- ggplot(midwest)
 
 # give it some aesthetics to work with...
 ggplot(midwest, aes(x=area, y=poptotal))  # area and poptotal are columns in 'midwest'
@@ -72,7 +73,7 @@ ggplot(midwest, aes(x=area, y=poptotal)) +
 
 # Change color of points and line to static values:
 ggplot(midwest, aes(x=area, y=poptotal)) + 
-  geom_point(color="steelblue",size=3) + 
+  geom_point(color="steelblue",size=3,alpha=0.1,) + 
   geom_smooth(method="lm",color="firebrick") + 
   coord_cartesian(xlim=c(0,0.1), ylim=c(0, 1000000)) + 
   labs(title="Area Vs Population", subtitle="From midwest dataset", y="Population", x="Area", caption="Midwest Demographics")
@@ -91,6 +92,7 @@ p3
 
 # Don't like those colors?
 p3 + scale_color_brewer(palette = "Set1")
+p3 + scale_color_viridis_d(option='mako')
 
 # Want more color choices? You can check them out in the RColorBrewer package, or even make your own
 library(RColorBrewer)
