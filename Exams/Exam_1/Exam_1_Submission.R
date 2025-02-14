@@ -71,7 +71,7 @@ A_states |>
 state_max_fatality_rate <- rdata |> 
   group_by(Province_State) |>
   summarize(Maximum_Fatality_Ratio = max(Case_Fatality_Ratio,na.rm=T)) |>
-  arrange(Maximum_Fatality_Ratio,)  
+  arrange(desc(Maximum_Fatality_Ratio),)  
   
 ## Task 5: Use that new data frame from task IV to create another plot, where:
 #  X-axis is Province_State
@@ -81,9 +81,10 @@ state_max_fatality_rate <- rdata |>
 #  x-axis labels turned to 90 deg to be readable
 
 state_max_fatality_rate |>
-  mutate(Province_State = as.factor(Province_State)) |>
+  mutate(Province_State = factor(Province_State,levels=Province_State)) |>
   ggplot(aes(x=Province_State,y=Maximum_Fatality_Ratio)) +
-  geom_bar(stat="identity") +
+  #geom_bar(stat="identity") +
+  geom_col()+
   theme(,
     axis.text.x = element_text(angle = 90),
   )
