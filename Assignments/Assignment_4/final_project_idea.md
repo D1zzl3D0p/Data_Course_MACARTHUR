@@ -13,3 +13,9 @@ stream <- rdata |>
   geom_point()+
   geom_line()
 ```
+string<-""
+for (i in sample(c("A","T","G","C"), 700, replace=T)){
+  string = paste(i,string,sep='')
+}
+string
+
