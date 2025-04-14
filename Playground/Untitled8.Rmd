@@ -1,0 +1,48 @@
+---
+title: "Untitled8"
+output: html_document
+date: "`r Sys.Date()`"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, error = F, warning = F)
+library(tidyverse)
+library(pander)
+library(palmerpenguins)
+library(equatiomatic)
+library(easystats)
+library(broom)
+library(kableExtra)
+```
+
+```{r}
+p <- penguins |>
+  filter(!is.na(sex))|>
+  ggplot(aes(x=species,y=body_mass_g,color=sex))+
+  geom_boxplot()+
+  geom_jitter(alpha=.25)
+
+plotly::ggplotly(p)
+```
+
+```{r}
+mod <- penguins |>
+  filter(!is.na(sex))|>
+  glm(data=_,
+      formula=body_mass_g ~sex * species)
+```
+
+```{r}
+mod |> 
+  tidy() |> 
+  kable() |>
+  kable_classic()
+```
+
+```{r}
+equatiomatic::extract_eq(mod)
+```
+
+$$
+E(\operatorname{body\_mass\_g} ) = \alpha + \beta_{1}(\operatorname{sex}_{\operatorname{male}}) + \beta_{2}(\operatorname{species}_{\operatorname{Chinstrap}}) + \beta_{3}(\operatorname{species}_{\operatorname{Gentoo}}) + \beta_{4}(\operatorname{sex}_{\operatorname{male}} \times \operatorname{species}_{\operatorname{Chinstrap}}) + \beta_{5}(\operatorname{sex}_{\operatorname{male}} \times \operatorname{species}_{\operatorname{Gentoo}})
+$$
